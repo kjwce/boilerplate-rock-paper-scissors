@@ -9,7 +9,7 @@ def counter(move):
 
 def player(prev_play, opponent_history=[]):
     if prev_play == "":
-        oponent_history.clear()
+        opponent_history.clear()
     else :
         opponent_history.append(prev_play)
     if not opponent_history:
@@ -18,7 +18,7 @@ def player(prev_play, opponent_history=[]):
     history = opponent_history
     prediction = None
 
-    for order in range(min(5, ln(history) - 1), 0, -1):
+    for order in range(min(5, len(history) - 1), 0, -1):
         pattern = tuple(history[-order:])
         counts = {"R": 0, "P": 0, "S": 0}
 
@@ -30,7 +30,7 @@ def player(prev_play, opponent_history=[]):
                 counts[next_move] += 1
 
 
-        total = sum(coutns.values())
+        total = sum(counts.values())
 
         if total >= 2:
             prediction = max(counts, key=counts.get)
